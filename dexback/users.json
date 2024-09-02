@@ -1,0 +1,34 @@
+[
+  {
+    "username": "cynthia",
+    "password": "1234",
+    "cids": [
+      {
+        "name": "upload.png",
+        "cid": "QmbaRwiGeuxRkMdKWXGBT1FzoyF9aEU492S75jBfcaSbRA"
+      },
+      {
+        "name": "IntelligentSurveillanceSystemsforSmartCitiesASystematicLiteratureReview.pdf",
+        "cid": "Qmf2ErA4Rfoe2qZFboB6349QEtRygr7GqCoDbpLtEvWg7V"
+      }
+    ]
+  },
+  {
+    "username": "raph",
+    "password": "1234",
+    "cids": [
+      {
+        "name": "IntelligentSurveillanceSystemsforSmartCitiesASystematicLiteratureReview.pdf",
+        "cid": "Qmf2ErA4Rfoe2qZFboB6349QEtRygr7GqCoDbpLtEvWg7V"
+      },
+      {
+        "name": "upload.png",
+        "cid": "QmbaRwiGeuxRkMdKWXGBT1FzoyF9aEU492S75jBfcaSbRA"
+      },
+      {
+        "name": "IntelligentSurveillanceSystemsforSmartCitiesASystematicLiteratureReview.pdf",
+        "cid": "Qmf2ErA4Rfoe2qZFboB6349QEtRygr7GqCoDbpLtEvWg7V"
+      }
+    ]
+  }
+]
