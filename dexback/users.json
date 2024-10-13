@@ -30,5 +30,19 @@
         "cid": "Qmf2ErA4Rfoe2qZFboB6349QEtRygr7GqCoDbpLtEvWg7V"
       }
     ]
+  },
+  {
+    "username": "ferd",
+    "password": "2020",
+    "cids": [
+      {
+        "name": "pic5.png",
+        "cid": "QmaGj6D3DDCrU9qamgxa9kALFYZaVdw7QnoPD3pPvWooy7"
+      },
+      {
+        "name": "pic5.png",
+        "cid": "QmaGj6D3DDCrU9qamgxa9kALFYZaVdw7QnoPD3pPvWooy7"
+      }
+    ]
   }
 ]
