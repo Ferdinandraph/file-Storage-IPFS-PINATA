@@ -25,7 +25,7 @@ export const uploadFile = async (file, token) => {
     const name = file.name;
 
     // Save the CID on the server with the file name
-    await axios.post('http://localhost:5000/api/save-cid', { cid, name }, {
+    await axios.post('file-storage-ipfs-pinata-1-backend.onrender.com/api/save-cid', { cid, name }, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
