@@ -8,7 +8,7 @@ const CIDList = ({ token }) => {
   useEffect(() => {
     const fetchCids = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/cids', {
+        const res = await axios.get('https://file-storage-ipfs-pinata-1-backend.onrender.com/api/cids', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCids(res.data.cids);
