@@ -7,16 +7,17 @@ const Login = ({ setToken }) => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://file-storage-ipfs-pinata-1-backend.onrender.com/api/login', { username, password });
+      const response = await axios.post(`${backendUrl}/api/login`, { username, password });
       setToken(response.data.token);
-      alert("successfully logged in")
+      alert('Successfully logged in');
       navigate('/');
     } catch (error) {
-      setMessage(error.response.data.message);
-      alert("Login unsuccessfull")
+      setMessage(error.response?.data?.message || 'Login failed');
+      alert('Login unsuccessful');
     }
   };
 
@@ -37,7 +38,9 @@ const Login = ({ setToken }) => {
         onChange={(e) => setPassword(e.target.value)}
         className="mb-2 p-2 border rounded"
       />
-      <button onClick={handleLogin} className="p-2 bg-blue-500 text-white rounded">Login</button>
+      <button onClick={handleLogin} className="p-2 bg-blue-500 text-white rounded">
+        Login
+      </button>
       {message && <p className="mt-2 text-red-500">{message}</p>}
     </div>
   );

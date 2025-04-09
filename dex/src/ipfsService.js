@@ -1,16 +1,13 @@
 import axios from 'axios';
 
 const JWT = process.env.REACT_APP_PINATA_JWT;
+const BackendUrl = process.env.REACT_APP_BACKEND_URL;
 
-export const uploadFile = async (file, token) => {
+export const uploadFile = async (file, token, saveToBackend = true, txHash = null) => {
   const formData = new FormData();
   formData.append('file', file);
-
-  const pinataMetadata = JSON.stringify({ name: file.name });
-  formData.append('pinataMetadata', pinataMetadata);
-
-  const pinataOptions = JSON.stringify({ cidVersion: 0 });
-  formData.append('pinataOptions', pinataOptions);
+  formData.append('pinataMetadata', JSON.stringify({ name: file.name }));
+  formData.append('pinataOptions', JSON.stringify({ cidVersion: 0 }));
 
   try {
     const res = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
@@ -22,13 +19,11 @@ export const uploadFile = async (file, token) => {
     });
 
     const cid = res.data.IpfsHash;
-    const name = file.name;
-
-    // Save the CID on the server with the file name
-    await axios.post('http://localhost:5000/api/save-cid', { cid, name }, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
+    if (saveToBackend) {
+      await axios.post(`${BackendUrl}/api/save-cid`, { cid, name: file.name, txHash }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+    }
     return cid;
   } catch (error) {
     console.error('Error uploading file:', error);

@@ -4,6 +4,7 @@ import { getFile } from '../ipfsService';
 const FileList = () => {
   const [cid, setCid] = useState('');
   const [fileData, setFileData] = useState({ url: '', type: '' });
+  const [error, setError] = useState('');
 
   const handleRetrieve = async () => {
     if (!cid) {
@@ -14,8 +15,10 @@ const FileList = () => {
     try {
       const data = await getFile(cid);
       setFileData(data);
+      setError('');
     } catch (error) {
       console.error('Error retrieving file:', error);
+      setError('Failed to retrieve file');
     }
   };
 
@@ -25,13 +28,13 @@ const FileList = () => {
     if (fileData.type.startsWith('image/')) {
       return <img src={fileData.url} alt="Retrieved file" style={{ maxWidth: '100%' }} />;
     } else if (fileData.type === 'application/pdf') {
-      return <iframe src={fileData.url} title="Retrieved file" style={{ width: '100%', height: '600px' }} />;
+      return (
+        <iframe src={fileData.url} title="Retrieved file" style={{ width: '100%', height: '600px' }} />
+      );
     } else {
       return (
         <div>
-          <a href={fileData.url} download>
-            Download File
-          </a>
+          <a href={fileData.url} download>Download File</a>
         </div>
       );
     }
@@ -55,9 +58,8 @@ const FileList = () => {
           Retrieve
         </button>
       </div>
-      <div className="mt-8 w-full max-w-md">
-        {renderFile()}
-      </div>
+      {error && <p className="mt-4 text-red-500">{error}</p>}
+      <div className="mt-8 w-full max-w-md">{renderFile()}</div>
     </div>
   );
 };

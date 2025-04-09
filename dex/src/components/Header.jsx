@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { GrClose } from "react-icons/gr";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from 'react';
+import { GrClose } from 'react-icons/gr';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { Link, useLocation } from 'react-router-dom';
 
-function Header({ token, setToken }) {
+function Header({ token, setToken, account, connectWallet }) {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
 
@@ -22,18 +22,65 @@ function Header({ token, setToken }) {
         DEX STORAGE
       </Link>
       <nav className="hidden sm:flex justify-between items-center gap-6 font-semibold">
-        <Link to="/" className={`transition-colors duration-300 ${isActive('/') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Home</Link>
+        <Link
+          to="/"
+          className={`transition-colors duration-300 ${isActive('/') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+        >
+          Home
+        </Link>
         {token ? (
           <>
-            <Link to="/upload" className={`transition-colors duration-300 ${isActive('/upload') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Upload File</Link>
-            <Link to="/retrieve" className={`transition-colors duration-300 ${isActive('/retrieve') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Retrieve File</Link>
-            <Link to="/cids" className={`transition-colors duration-300 ${isActive('/cids') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Your CIDs</Link>
-            <button onClick={handleLogout} className="transition-colors duration-300 text-gray-800 hover:text-red-500 font-semibold">Logout</button>
+            <Link
+              to="/upload"
+              className={`transition-colors duration-300 ${isActive('/upload') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+            >
+              Upload File
+            </Link>
+            <Link
+              to="/retrieve"
+              className={`transition-colors duration-300 ${isActive('/retrieve') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+            >
+              Retrieve File
+            </Link>
+            <Link
+              to="/cids"
+              className={`transition-colors duration-300 ${isActive('/cids') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+            >
+              Your CIDs
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="transition-colors duration-300 text-gray-800 hover:text-red-500 font-semibold"
+            >
+              logout
+            </button>
+            {!account ? (
+              <button
+                onClick={connectWallet}
+                className="transition-colors duration-300 text-gray-800 hover:text-green-500 font-semibold"
+              >
+                Connect Wallet
+              </button>
+            ) : (
+              <span className="text-gray-600">
+                {account.slice(0, 6)}...{account.slice(-4)}
+              </span>
+            )}
           </>
         ) : (
           <>
-            <Link to="/register" className={`transition-colors duration-300 ${isActive('/register') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Register</Link>
-            <Link to="/login" className={`transition-colors duration-300 ${isActive('/login') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Login</Link>
+            <Link
+              to="/register"
+              className={`transition-colors duration-300 ${isActive('/register') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+            >
+              Register
+            </Link>
+            <Link
+              to="/login"
+              className={`transition-colors duration-300 ${isActive('/login') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+            >
+              Login
+            </Link>
           </>
         )}
       </nav>
@@ -46,17 +93,65 @@ function Header({ token, setToken }) {
         </button>
         {showMenu && (
           <div className="flex flex-col items-end gap-2 mt-2 bg-gray-200 p-4 rounded-lg shadow-lg">
-            <Link to="/" className={`transition-colors duration-300 ${isActive('/') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Home</Link>
+            <Link
+              to="/"
+              className={`transition-colors duration-300 ${isActive('/') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+            >
+              Home
+            </Link>
             {token ? (
               <>
-                <Link to="/upload" className={`transition-colors duration-300 ${isActive('/upload') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Upload File</Link>
-                <Link to="/retrieve" className={`transition-colors duration-300 ${isActive('/retrieve') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Retrieve File</Link>
-                <button onClick={handleLogout} className="transition-colors duration-300 text-gray-800 hover:text-red-500 font-semibold">Logout</button>
+                <Link
+                  to="/upload"
+                  className={`transition-colors duration-300 ${isActive('/upload') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+                >
+                  Upload File
+                </Link>
+                <Link
+                  to="/retrieve"
+                  className={`transition-colors duration-300 ${isActive('/retrieve') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+                >
+                  Retrieve File
+                </Link>
+                <Link
+                  to="/cids"
+                  className={`transition-colors duration-300 ${isActive('/cids') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+                >
+                  Your CIDs
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="transition-colors duration-300 text-gray-800 hover:text-red-500 font-semibold"
+                >
+                  Logout
+                </button>
+                {!account ? (
+                  <button
+                    onClick={connectWallet}
+                    className="transition-colors duration-300 text-gray-800 hover:text-green-500 font-semibold"
+                  >
+                    Connect Wallet
+                  </button>
+                ) : (
+                  <span className="text-gray-600">
+                    {account.slice(0, 6)}...{account.slice(-4)}
+                  </span>
+                )}
               </>
             ) : (
               <>
-                <Link to="/register" className={`transition-colors duration-300 ${isActive('/register') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Register</Link>
-                <Link to="/login" className={`transition-colors duration-300 ${isActive('/login') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}>Login</Link>
+                <Link
+                  to="/register"
+                  className={`transition-colors duration-300 ${isActive('/register') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/login"
+                  className={`transition-colors duration-300 ${isActive('/login') ? 'text-blue-500' : 'text-gray-800'} hover:text-blue-500`}
+                >
+                  Login
+                </Link>
               </>
             )}
           </div>

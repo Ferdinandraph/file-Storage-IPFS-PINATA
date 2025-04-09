@@ -1,0 +1,27 @@
+{
+  "name": "storage-system",
+  "version": "1.0.0",
+  "description": "A decentralized file storage system using Pinata and IPFS, designed to securely manage files in a distributed network. This system allows users to upload files, which are then stored on IPFS, a decentralized storage network. Each file receives a unique Content Identifier (CID), making it easy to retrieve and manage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ferdinandraph/file-Storage-IPFS-PINATA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ferdinandraph/file-Storage-IPFS-PINATA/issues"
+  },
+  "homepage": "https://github.com/Ferdinandraph/file-Storage-IPFS-PINATA#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.19"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
