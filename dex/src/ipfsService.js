@@ -19,11 +19,21 @@ export const uploadFile = async (file, token, saveToBackend = true, txHash = nul
     });
 
     const cid = res.data.IpfsHash;
+<<<<<<< HEAD
     if (saveToBackend) {
       await axios.post(`${BackendUrl}/api/save-cid`, { cid, name: file.name, txHash }, {
         headers: { Authorization: `Bearer ${token}` }
       });
     }
+=======
+    const name = file.name;
+
+    // Save the CID on the server with the file name
+    await axios.post('file-storage-ipfs-pinata-1-backend.onrender.com/api/save-cid', { cid, name }, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+>>>>>>> 1e41e1fe56641d29c1f99f55379b5642052dffcc
     return cid;
   } catch (error) {
     console.error('Error uploading file:', error);
