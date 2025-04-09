@@ -19,7 +19,7 @@ function Header({ token, setToken, account, connectWallet }) {
         to="/"
         className="flex items-center h-12 px-6 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-500 rounded-tl-full rounded-br-full font-bold uppercase italic text-white hover:opacity-90"
       >
-        DEX STORAGE
+        DEX FILE STORAGE
       </Link>
       <nav className="hidden sm:flex justify-between items-center gap-6 font-semibold">
         <Link
