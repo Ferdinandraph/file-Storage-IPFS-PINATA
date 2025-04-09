@@ -10,30 +10,22 @@ export const uploadFile = async (file, token, saveToBackend = true, txHash = nul
   formData.append('pinataOptions', JSON.stringify({ cidVersion: 0 }));
 
   try {
-    const res = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
-      maxBodyLength: "Infinity",
+    const res = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, {
+      maxBodyLength: 'Infinity',
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-        'Authorization': `Bearer ${JWT}`
-      }
+        'Authorization': `Bearer ${JWT}`,
+      },
     });
 
     const cid = res.data.IpfsHash;
-<<<<<<< HEAD
+
     if (saveToBackend) {
       await axios.post(`${BackendUrl}/api/save-cid`, { cid, name: file.name, txHash }, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
     }
-=======
-    const name = file.name;
 
-    // Save the CID on the server with the file name
-    await axios.post('file-storage-ipfs-pinata-1-backend.onrender.com/api/save-cid', { cid, name }, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
->>>>>>> 1e41e1fe56641d29c1f99f55379b5642052dffcc
     return cid;
   } catch (error) {
     console.error('Error uploading file:', error);
@@ -44,7 +36,7 @@ export const uploadFile = async (file, token, saveToBackend = true, txHash = nul
 export const getFile = async (cid) => {
   try {
     const res = await axios.get(`https://purple-defeated-mollusk-661.mypinata.cloud/ipfs/${cid}`, {
-      responseType: 'blob'
+      responseType: 'blob',
     });
     const url = URL.createObjectURL(res.data);
     return { url, type: res.data.type };
